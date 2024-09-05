@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>风车动画</title>
+    <style>
+      .wrapper {
+        position: relative;
+        width: 800px;
+        height: 450px;
+        margin: 60px auto 0;
+      }
+      .pin-layout {
+        position: absolute;
+        bottom: 0;
+        left: calc(50% - 20px);
+        width: 40px;
+        height: 280px;
+      }
+      .pin-layout::after {
+        position: absolute;
+        bottom: 0;
+        left: calc(50% - 20px);
+        content: "";
+        height: 0;
+        width: 10px;
+        border-width: 0px 15px 280px 15px;
+        border-style: solid;
+        border-color: transparent transparent #6b3500 transparent;
+      }
+      .pillar {
+        position: absolute;
+        top: -18px;
+        left: calc(50% - 18px);
+        width: 36px;
+        height: 36px;
+        z-index: 9;
+        transform: rotateZ(45deg);
+        animation: mypin 1s linear 0s infinite;
+      }
+      .pillar:hover {
+        animation-play-state: paused;
+      }
+      .pillar span[class^="item"] {
+        position: absolute;
+        top: calc(-200px + 18px);
+        left: 18px;
+        border-width: 0px 80px 200px 0px;
+        border-style: solid;
+      }
+      .pillar span[class^="item"]:nth-of-type(1) {
+        z-index: 1;
+        border-color: transparent transparent gray transparent;
+        /*border-color:green red gray blue;*/
+      }
+      .pillar span[class^="item"]:nth-of-type(2) {
+        z-index: 2;
+        border-color: transparent transparent red transparent;
+        transform-origin: left bottom;
+        transform: rotateZ(90deg);
+      }
+      .pillar span[class^="item"]:nth-of-type(3) {
+        z-index: 3;
+        border-color: transparent transparent yellow transparent;
+        transform-origin: left bottom;
+        transform: rotateZ(180deg);
+      }
+      .pillar span[class^="item"]:nth-of-type(4) {
+        z-index: 4;
+        border-color: transparent transparent lime transparent;
+        transform-origin: left bottom;
+        transform: rotateZ(270deg);
+      }
+      .dot {
+        position: absolute;
+        top: 0;
+        left: 0;
+        border-width: 19px;
+        border-style: solid;
+        border-color: #3c0505 transparent #3c0505 transparent;
+        border-radius: 50%;
+        background: #f505ee;
+        z-index: 1999;
+        box-shadow: 0 0 2px #1a0505;
+      }
+      @keyframes mypin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="pin-layout">
+        <div class="pillar">
+          <div class="dot"></div>
+          <span class="item1"></span>
+          <span class="item2"></span>
+          <span class="item3"></span>
+          <span class="item4"></span>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
