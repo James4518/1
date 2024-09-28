@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>交互按钮</title>
+    <link rel="stylesheet" href="main.css" />
+  </head>
+  <body>
+    <div class="inner">
+      <button type="button">南城FE</button>
+      <div class="blob"></div>
+    </div>
+    <script>
+      document.querySelectorAll(".inner").forEach((button) => {
+        button.onmousemove = (e) => {
+          const target = e.target;
+          const rect = target.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+
+          button.style.setProperty("--x", `${x}px`);
+          button.style.setProperty("--y", `${y}px`);
+          button.style.setProperty("--height", `${rect.height}px`);
+          button.style.setProperty("--width", `${rect.width}px`);
+        };
+      });
+    </script>
+  </body>
+</html>
