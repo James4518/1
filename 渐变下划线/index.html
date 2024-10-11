@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .title {
+        color: #333;
+        line-height: 2;
+      }
+      .title span {
+        background: linear-gradient(to right, red, yellow, green) no-repeat
+          right bottom;
+        background-size: 0px 2px;
+        transition: background-size 1500ms;
+      }
+      .title span:hover {
+        background-position-x: left;
+        background-size: 100% 2px;
+      }
+    </style>
+  </head>
+  <body>
+    <h2 class="title">
+      <span>熟 练 掌 握 css 是 你 的 谎 言</span>
+    </h2>
+  </body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      .underline-move {
+        position: relative;
+        display: inline-block;
+      }
+      .underline-move::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -3px;
+        width: 0;
+        height: 2px;
+        background: linear-gradient(to right, red, yellow, green);
+        transition: width 1s ease;
+      }
+      .underline-move:hover::after {
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <h2 class="underline-move">
+      熟 练 掌 握 css 是 你 的 谎 言。伪元素 + 背景渐变色 + 过渡动画
+    </h2>
+  </body>
+</html>
