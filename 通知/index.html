@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #notification-container {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 9999;
+      }
+      .notification {
+        background-color: #f8f8f8;
+        border-left: 4px solid #4caf50;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        padding: 16px;
+        margin-bottom: 10px;
+        width: 300px;
+        opacity: 0;
+        transform: translateX(100%);
+        transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+      }
+      .notification.show {
+        opacity: 1;
+        transform: translateX(0);
+      }
+      .notification-title {
+        font-weight: bold;
+        margin-bottom: 5px;
+      }
+      .notification-body {
+        font-size: 14px;
+      }
+      .notification-close {
+        background: none;
+        border: none;
+        font-size: 16px;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        cursor: pointer;
+      }
+      @media (max-width: 768px) {
+        #notification-container {
+          left: 20px;
+          right: 20px;
+          bottom: 20px;
+        }
+        .notification {
+          width: auto;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="notification-container"></div>
+    <script>
+      async function showNotification(
+        title,
+        message,
+        level = "info",
+        duration = 5000
+      ) {
+        const container = document.getElementById("notification-container");
+        const notification = document.createElement("div");
+        notification.className = "notification";
+        notification.style.borderLeftColor =
+          {
+            success: "#4CAF50",
+            warning: "#FFC107",
+            error: "#F44336",
+            info: "#2196F3",
+          }[level] || "#2196F3";
+        notification.innerHTML = `
+        <div class="notification-title">${title}</div>
+        <div class="notification-body">${message}</div>
+        <button class="notification-close" aria-label="Close notification">×</button>
+      `;
+        notification
+          .querySelector(".notification-close")
+          .addEventListener("click", () => hideNotification(notification));
+        notification.setAttribute("role", "alert");
+        notification.setAttribute("aria-live", "polite");
+        container.appendChild(notification);
+        requestAnimationFrame(() => notification.classList.add("show"));
+        await new Promise((resolve) => setTimeout(resolve, duration));
+        hideNotification(notification);
+      }
+      function hideNotification(notification) {
+        notification.classList.remove("show");
+        setTimeout(() => notification.remove(), 300);
+      }
+      let isShowingNotification = false;
+      const notificationQueue = [];
+      async function queueNotification(
+        title,
+        message,
+        level = "info",
+        duration = 5000
+      ) {
+        notificationQueue.push({ title, message, level, duration });
+        if (!isShowingNotification) {
+          isShowingNotification = true;
+          while (notificationQueue.length) {
+            const { title, message, level, duration } =
+              notificationQueue.shift();
+            await showNotification(title, message, level, duration);
+          }
+          isShowingNotification = false;
+        }
+      }
+      queueNotification(
+        "Success",
+        "Your data has been saved successfully.",
+        "success"
+      );
+      queueNotification("Warning", "Your session will expire soon.", "warning");
+      queueNotification("Error", "Failed to save data.", "error");
+      queueNotification("Info", "New updates are available.", "info");
+    </script>
+  </body>
+</html>
