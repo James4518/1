@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Text Rain Animation</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      :root {
+        --body-color: #181c1f;
+        --primary-color: #ffffff;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background-color: var(--body-color);
+      }
+      .text {
+        position: absolute;
+        transition: opacity 1s ease-out;
+      }
+      .container {
+        width: 100%;
+        height: 400px;
+        display: flex;
+        justify-content: center;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        -webkit-box-reflect: below 1px
+          linear-gradient(
+            transparent,
+            transparent,
+            transparent,
+            transparent,
+            #0005
+          );
+      }
+      .cloud {
+        position: relative;
+        top: 50px;
+        z-index: 100;
+        width: 320px;
+        height: 100px;
+        background-color: var(--primary-color);
+        border-radius: 100px;
+        filter: drop-shadow(0 0 30px var(--primary-color));
+      }
+      .cloud::before {
+        content: "";
+        width: 110px;
+        height: 110px;
+        background-color: var(--primary-color);
+        border-radius: 50%;
+        position: absolute;
+        top: -50px;
+        left: 40px;
+        box-shadow: 90px 0 0 30px var(--primary-color);
+      }
+      .cloud .text {
+        position: absolute;
+        top: 40px;
+        height: 20px;
+        line-height: 20px;
+        text-transform: uppercase;
+        color: var(--primary-color);
+        text-shadow: 0 0 5px var(--primary-color), 0 0 15px var(--primary-color),
+          0 0 30px var(--primary-color);
+        transform-origin: bottom;
+        animation: animate 2s linear forwards;
+      }
+      @keyframes animate {
+        0% {
+          transform: translateX(0);
+        }
+        70% {
+          transform: translateY(290px);
+        }
+        100% {
+          transform: translateY(290px);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="cloud"></div>
+    </div>
+    <script>
+      const generateText = () => {
+        const letters = Array.from({ length: 26 }, (_, i) => String.fromCharCode(97 + i));
+        const numbers = Array.from({ length: 9 }, (_, i) => i + 1);
+        return [...letters, ...numbers];
+      };
+      const randomText = (texts) => texts[Math.floor(Math.random() * texts.length)];
+      const createTextElement = (text) => {
+        const textEle = document.createElement("div");
+        textEle.innerText = text;
+        textEle.classList.add("text");
+        const left = Math.random() * 310;
+        const size = 0.5 + Math.random() * 1.5; 
+        const duration = 1 + Math.random();
+        Object.assign(textEle.style, {
+          left: `${left}px`,
+          fontSize: `${size}em`,
+          animationDuration: `${duration}s`,
+          opacity: 1,
+        });
+        return textEle;
+      };
+      const rainEffect = (texts) => {
+        const cloudEle = document.querySelector(".cloud");
+        const text = randomText(texts);
+        const textEle = createTextElement(text);
+        cloudEle.appendChild(textEle);
+        setTimeout(() => {
+          textEle.style.opacity = 0;
+          setTimeout(() => cloudEle.removeChild(textEle), 1000);
+        }, 2000);
+      };
+      const texts = generateText();
+      setInterval(() => rainEffect(texts), 20);
+    </script> 
+  </body>
+</html>
