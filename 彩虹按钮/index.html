@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSS Conic Gradients 彩虹按钮</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      body {
+        background-color: #000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+      }
+      @property --rotate {
+        syntax: "<angle>";
+        initial-value: 0deg;
+        inherits: false;
+      }
+      button {
+        --blue: #0173ff;
+        --radius: 50px;
+        --rotate: 0deg;
+        padding: 20px 30px;
+        border-radius: var(--radius);
+        background: var(--blue);
+        color: #fff;
+        font-weight: 500;
+        font-size: 30px;
+        border: 0;
+        position: relative;
+        overflow: hidden;
+      }
+      button::before {
+        content: "";
+        background: conic-gradient(
+          from var(--rotate),
+          transparent 0%,
+          white 5%,
+          transparent 10%
+        );
+        position: absolute;
+        inset: 0;
+        animation: rotate 2s linear infinite;
+      }
+      button::after {
+        content: "";
+        background: var(--blue);
+        position: absolute;
+        inset: 3px;
+        border-radius: calc(var(--radius) - 3px);
+      }
+      .fancy {
+        position: absolute;
+        inset: 0;
+      }
+      .text {
+        position: relative;
+        z-index: 1;
+      }
+      @keyframes rotate {
+        to {
+          --rotate: 360deg;
+        }
+      }
+      .rainbow {
+        background: #1c1b29;
+        position: relative;
+        overflow: hidden;
+      }
+      .rainbow::before {
+        content: "";
+        background: conic-gradient(
+          from var(--rotate),
+          #fd004c,
+          #fe9000,
+          #fff020,
+          #3edf4b,
+          #3363ff,
+          #b102b7,
+          #fd004c
+        );
+        animation: rainbow-rotate 0.8s linear infinite;
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        opacity: 1;
+      }
+      @keyframes rainbow-rotate {
+        0% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <button>
+      <div class="fancy"></div>
+      <span class="text">Download For Free</span>
+    </button>
+    <button class="rainbow" style="margin-left: 20px">
+      <div class="fancy"></div>
+      <span class="text">Download For Free</span>
+    </button>
+  </body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSS Conic gradients彩虹按钮</title>
+  </head>
+  <body>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      body {
+        background-color: #000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+      }
+      @property --roate {
+        syntax: "<angle>";
+        initial-value: 0deg;
+        inherits: false;
+      }
+      button {
+        --bule: #0173ff;
+        --radius: 50px;
+        --roate: 0deg;
+        padding: 20px 30px;
+        border-radius: var(--radius);
+        background: var(--bule);
+        color: #fff;
+        font-weight: 500;
+        font-size: 30px;
+        border: 0;
+        position: relative;
+        overflow: hidden;
+      }
+      button::before {
+        content: "";
+        background: conic-gradient(
+          from var(--roate),
+          transparent 0%,
+          white 5%,
+          transparent 10%
+        );
+        position: absolute;
+        inset: 0;
+        animation: rotate 2s linear infinite;
+      }
+      button::after {
+        content: "";
+        background: var(--bule);
+        position: absolute;
+        inset: 3px;
+        border-radius: calc(var(--radius) - 3px);
+      }
+      .fancy {
+        position: absolute;
+        inset: 0;
+      }
+      .text {
+        position: relative;
+        z-index: 1;
+      }
+      @keyframes rotate {
+        to {
+          --roate: 360deg;
+        }
+      }
+    </style>
+    <button>
+      <div class="fancy"></div>
+      <span class="text">Download For Free</span>
+    </button>
+    <style>
+      .rainbow::before {
+        background: conic-gradient(
+          from var(--roate),
+          #fd004c,
+          #fe9000,
+          #fff020,
+          #3edf4b,
+          #3363ff,
+          #b102b7,
+          #fd004c
+        );
+        animation: rotate 0.8s linear infinite;
+        transition: opacity 0.5s linear;
+        opacity: 1;
+      }
+      .step::before {
+        opacity: 0;
+      }
+      .rainbow {
+        background: #1c1b29;
+      }
+      .rainbow::after {
+        background: #1c1b29;
+      }
+    </style>
+    <button class="rainbow" style="margin-left: 20px">
+      <div class="fancy"></div>
+      <span class="text">Download For Free</span>
+    </button>
+    <script>
+      const btn = document.querySelector(".rainbow");
+      setInterval(() => {
+        if (btn.classList.contains("step")) {
+          btn.classList.remove("step");
+        } else {
+          btn.classList.add("step");
+        }
+      }, 3000);
+    </script>
+  </body>
+</html>
