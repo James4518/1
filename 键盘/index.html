@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+   <head>
+    <meta charset="UTF-8" />
+    <title>五彩炫酷模拟键盘</title>
+    <style type="text/css">
+      body {
+        background: #000;
+      }
+      textarea {
+        display: block;
+        width: 880px;
+        height: 100px;
+        margin: 50px auto;
+        font-size: 16px;
+        color: #fff;
+        background: #555;
+      }
+      .keyboard {
+        width: 908px;
+        margin: 50px auto;
+      }
+      html,
+      body,
+      a,
+      div,
+      p,
+      img,
+      textarea {
+        -webkit-touch-callout: text !important;
+        -webkit-user-select: text !important;
+        user-select: text !important;
+      }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="index.js"></script>
+  </head>
+  <body>
+    <textarea placeholder=" 请在这里输入英文！！！"></textarea>
+    <div class="keyboard"></div>
+    <script type="text/javascript">
+      $("textarea").focus();
+      $(".keyboard").keyboard({ audio: "keydown.mp3" });
+    </script>
+  </body>
+</html>
