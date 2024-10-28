@@ -1,0 +1,51 @@
+document.addEventListener("DOMContentLoaded", () => {
+  const elements = {
+    clock: document.querySelector(".clock"),
+    screen: document.querySelector(".screen"),
+    time: document.querySelector(".time")
+  };
+  elements.clock && setTimeout(() => elements.clock.classList.remove("is-off"), 2000);
+  function updateTime() {
+    const now = new Date();
+    const formattedTime = `${now.getHours().toString().padStart(2, '0')} : ${
+      now.getMinutes().toString().padStart(2, '0')} : ${
+      now.getSeconds().toString().padStart(2, '0')}`;
+
+    if (elements.time) {
+      elements.time.innerHTML = formattedTime;
+      elements.time.setAttribute("data-time", formattedTime);
+    }
+    requestAnimationFrame(() => setTimeout(updateTime, 1000));
+  }
+  updateTime();
+});
+
+
+// $(document).ready(function () {
+//   function second_passed() {
+//     $(".clock").removeClass("is-off");
+//   }
+//   setTimeout(second_passed, 2000);
+//   $(".switcher").on("click", function (e) {
+//     e.preventDefault();
+//     $(".screen").toggleClass("glitch");
+//   });
+//   var newDate = new Date();
+//   newDate.setDate(newDate.getDate());
+//   setInterval(function () {
+//     var hours = new Date().getHours();
+//     var seconds = new Date().getSeconds();
+//     var minutes = new Date().getMinutes();
+//     var realTime =
+//       (hours < 10 ? "0" : "") +
+//       hours +
+//       " : " +
+//       (minutes < 10 ? "0" : "") +
+//       minutes +
+//       " : " +
+//       (seconds < 10 ? "0" : "") +
+//       seconds;
+//     $(".time").html(realTime);
+//     $(".time").attr("data-time", realTime);
+//   }, 1000);
+// });
