@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      @import "https://fonts.googleapis.com/css?family=Share+Tech+Mono";
+      @import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css";
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        width: 100vw;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/1376484/jess-harding-lqT6NAmTaiY-unsplash.jpg"),
+          radial-gradient(#28a3dd, #0d7751);
+        background-size: cover;
+        background-position: center;
+        font-family: "Share Tech Mono", monospace;
+        font-size: 2rem;
+        background-blend-mode: multiply, screen, overlay;
+      }
+      .design {
+        position: relative;
+        height: 300px;
+        width: 300px;
+      }
+      .design > * {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+      }
+      .rotated-border {
+        box-sizing: border-box;
+        border: 15px #eb311f solid;
+        transform: rotate(45deg);
+        box-shadow: 0 0 10px #eb311f, inset 0 0 20px #eb311f;
+      }
+      .grid {
+        display: grid;
+        grid: repeat(2, 1fr) / repeat(2, 1fr);
+      }
+      [data-white] {
+        background-color: white;
+      }
+      .blend > * {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+      }
+      .blend {
+        mix-blend-mode: multiply;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="design">
+      <img
+        src="https://images.unsplash.com/photo-1511692277506-3be3a7ab1686"
+        alt="鸟图"
+      />
+      <div class="rotated-border"></div>
+      <div class="grid">
+        <div data-white></div>
+        <div></div>
+        <div></div>
+        <div data-white></div>
+      </div>
+      <div class="blend">
+        <img
+          src="https://images.unsplash.com/photo-1511692277506-3be3a7ab1686"
+          alt="鸟图"
+        />
+        <div class="grid">
+          <div></div>
+          <div data-white></div>
+          <div data-white></div>
+          <div></div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      ​body {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .design {
+        position: relative;
+        height: 300px;
+        width: 300px;
+      }
+      .design > * {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+      }
+      .design__border {
+        height: 300px;
+        width: 300px;
+        box-sizing: border-box;
+        border: 15px #eb311f solid;
+        transform: rotate(-45deg);
+        /* clip-path替代mask */
+        mask: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAS0AAAEuCAYAAADbd0RAAAAAAXNSR0IArs4c6QAADhdJREFUeAHt3DuI7GcZBnBzNSYRRBSxUAsLwcIiogZEMMFCxcQbBE0n2ESMpLEKxEZQEIQU2ggGBIUUgkoqJVdRTJpY2mgnaKHiPSaa+H4k51RnM7vP/DfPnN3fwOuGs/N878xv5jw7O7ueK1714uX6+XDFS//tw3YC185Rf9nuOCcduMANB377zsLNe2YV1S0zj8w8dxbu0QHdhyvntlw144vBAT0op3hT7pyzvz/zv5nnT3HPeT76mrnzT189/3PzzIJef+CyncA/56jvbXeckw5c4MG5fXfMfGjGK67Te7DeuF4NuGwv8O858r6ZL2x/tBMPVGB94f/0zMMz6wuWyykJKK3tYf81R65vFb65/dFOPHCBVVyfmllvtyiuU3qwlNZ2sOsJ+7eZW2d+tN2xTrrMBNbz4JMziuuUHjiltQ3ss3PMH2dumnlymyOdchkLXCiuR+c+eMW18QOptPYHXd8O/mbmXTO/3f84J5wRgVVcn5h5bEZxDcJWF6W1n+R6Mj4x876ZP+13lPQZFFjF9fGZx2YU1yBscVFaueJ6Ej4w89GZZ/JjJM+4wIXienzu53pV7rKngNLKANevNNw7c/fMC9kRUudI4EJxrfe4FNeeD7zSOjngetJ9Zub+k0clzrHAf+e+e49rgyeA0jo+4vpq+deZ9X97+snxY65J4KLAKq71HtcTM97jushysv9QWsfz+s9c7Q8z61canjpexLUIXFJgFdftM6u4fKt4SaKX/0Ol9fI+67PriXXhVxp+t/vqrkFgp4Di2kl09BWU1tE26zPrJfxjM+tXGv4840JgK4FVXLfN/HzGt4onUF3/ysM+l79P+LqZ3+9zyAFn13tX98z4CeEBP0iX8U1bxfWxmYdmPjCz/l07lx0C+5bWenP6gzO/3LHHpwkQuLTAKq6PzNw1862XrnKWv0iuf1/uHzM3vnRfT/zBt4cnJhMgsLnAKqlvz6y/0GvW38uzOu+e+7Ze7MQXpRXTCRIg0BBQWg11OwkQiAWUVkwnSIBAQ0BpNdTtJEAgFlBaMZ0gAQINAaXVULeTAIFYQGnFdIIECDQElFZD3U4CBGIBpRXTCRIg0BBQWg11OwkQiAWUVkwnSIBAQ0BpNdTtJEAgFlBaMZ0gAQINAaXVULeTAIFYQGnFdIIECDQElFZD3U4CBGIBpRXTCRIg0BBQWg11OwkQiAWUVkwnSIBAQ0BpNdTtJEAgFlBaMZ0gAQINAaXVULeTAIFYQGnFdIIECDQElFZD3U4CBGIBpRXTCRIg0BBQWg11OwkQiAWUVkwnSIBAQ0BpNdTtJEAgFlBaMZ0gAQINAaXVULeTAIFYQGnFdIIECDQElFZD3U4CBGIBpRXTCRIg0BBQWg11OwkQiAWUVkwnSIBAQ0BpNdTtJEAgFlBaMZ0gAQINAaXVULeTAIFYQGnFdIIECDQElFZD3U4CBGIBpRXTCRIg0BBQWg11OwkQiAWUVkwnSIBAQ0BpNdTtJEAgFlBaMZ0gAQINAaXVULeTAIFYQGnFdIIECDQElFZD3U4CBGIBpRXTCRIg0BBQWg11OwkQiAWUVkwnSIBAQ0BpNdTtJEAgFlBaMZ0gAQINAaXVULeTAIFYQGnFdIIECDQElFZD3U4CBGIBpRXTCRIg0BBQWg11OwkQiAWUVkwnSIBAQ0BpNdTtJEAgFlBaMZ0gAQINAaXVULeTAIFYQGnFdIIECDQElFZD3U4CBGIBpRXTCRIg0BBQWg11OwkQiAWUVkwnSIBAQ0BpNdTtJEAgFlBaMZ0gAQINAaXVULeTAIFYQGnFdIIECDQElFZD3U4CBGIBpRXTCRIg0BBQWg11OwkQiAWUVkwnSIBAQ0BpNdTtJEAgFlBaMZ0gAQINAaXVULeTAIFYQGnFdIIECDQElFZD3U4CBGIBpRXTCRIg0BBQWg11OwkQiAWUVkwnSIBAQ0BpNdTtJEAgFlBaMZ0gAQINAaXVULeTAIFYQGnFdIIECDQElFZD3U4CBGIBpRXTCRIg0BBQWg11OwkQiAWUVkwnSIBAQ0BpNdTtJEAgFlBaMZ0gAQINAaXVULeTAIFYQGnFdIIECDQElFZD3U4CBGIBpRXTCRIg0BBQWg11OwkQiAWUVkwnSIBAQ0BpNdTtJEAgFlBaMZ0gAQINAaXVULeTAIFYQGnFdIIECDQElFZD3U4CBGIBpRXTCRIg0BBQWg11OwkQiAWUVkwnSIBAQ0BpNdTtJEAgFlBaMZ0gAQINAaXVULeTAIFYQGnFdIIECDQElFZD3U4CBGIBpRXTCRIg0BBQWg11OwkQiAWUVkwnSIBAQ0BpNdTtJEAgFlBaMZ0gAQINAaXVULeTAIFYQGnFdIIECDQElFZD3U4CBGIBpRXTCRIg0BBQWg11OwkQiAWUVkwnSIBAQ0BpNdTtJEAgFlBaMZ0gAQINAaXVULeTAIFYQGnFdIIECDQElFZD3U4CBGIBpRXTCRIg0BBQWg11OwkQiAWUVkwnSIBAQ0BpNdTtJEAgFlBaMZ0gAQINAaXVULeTAIFYQGnFdIIECDQElFZD3U4CBGIBpRXTCRIg0BBQWg11OwkQiAWUVkwnSIBAQ0BpNdTtJEAgFlBaMZ0gAQINAaXVULeTAIFYQGnFdIIECDQElFZD3U4CBGIBpRXTCRIg0BBQWg11OwkQiAWUVkwnSIBAQ0BpNdTtJEAgFlBaMZ0gAQINAaXVULeTAIFYQGnFdIIECDQElFZD3U4CBGIBpRXTCRIg0BBQWg11OwkQiAWUVkwnSIBAQ0BpNdTtJEAgFlBaMZ0gAQINAaXVULeTAIFYQGnFdIIECDQElFZD3U4CBGIBpRXTCRIg0BBQWg11OwkQiAWUVkwnSIBAQ0BpNdTtJEAgFlBaMZ0gAQINAaXVULeTAIFYQGnFdIIECDQElFZD3U4CBGIBpRXTCRIg0BBQWg11OwkQiAWUVkwnSIBAQ0BpNdTtJEAgFlBaMZ0gAQINAaXVULeTAIFYQGnFdIIECDQElFZD3U4CBGIBpRXTCRIg0BBQWg11OwkQiAWUVkwnSIBAQ0BpNdTtJEAgFlBaMZ0gAQINAaXVULeTAIFYQGnFdIIECDQElFZD3U4CBGIBpRXTCRIg0BBQWg11OwkQiAWUVkwnSIBAQ0BpNdTtJEAgFlBaMZ0gAQINAaXVULeTAIFYQGnFdIIECDQElFZD3U4CBGIBpRXTCRIg0BBQWg11OwkQiAWUVkwnSIBAQ0BpNdTtJEAgFlBaMZ0gAQINAaXVULeTAIFYQGnFdIIECDQElFZD3U4CBGIBpRXTCRIg0BBQWg11OwkQiAWUVkwnSIBAQ0BpNdTtJEAgFlBaMZ0gAQINAaXVULeTAIFYQGnFdIIECDQElFZD3U4CBGIBpRXTCRIg0BBQWg11OwkQiAWUVkwnSIBAQ0BpNdTtJEAgFlBaMZ0gAQINAaXVULeTAIFYQGnFdIIECDQElFZD3U4CBGIBpRXTCRIg0BBQWg11OwkQiAWUVkwnSIBAQ0BpNdTtJEAgFlBaMZ0gAQINAaXVULeTAIFYQGnFdIIECDQElFZD3U4CBGIBpRXTCRIg0BBQWg11OwkQiAWUVkwnSIBAQ0BpNdTtJEAgFlBaMZ0gAQINAaXVULeTAIFYQGnFdIIECDQElFZD3U4CBGIBpRXTCRIg0BBQWg11OwkQiAWUVkwnSIBAQ0BpNdTtJEAgFlBaMZ0gAQINAaXVULeTAIFYQGnFdIIECDQElFZD3U4CBGIBpRXTCRIg0BBQWg11OwkQiAWUVkwnSIBAQ0BpNdTtJEAgFlBaMZ0gAQINAaXVULeTAIFYQGnFdIIECDQElFZD3U4CBGIBpRXTCRIg0BBQWg11OwkQiAWUVkwnSIBAQ0BpNdTtJEAgFlBaMZ0gAQINAaXVULeTAIFYQGnFdIIECDQElFZD3U4CBGIBpRXTCRIg0BBQWg11OwkQiAWUVkwnSIBAQ0BpNdTtJEAgFlBaMZ0gAQINAaXVULeTAIFYQGnFdIIECDQElFZD3U4CBGIBpRXTCRIg0BBQWg11OwkQiAWujpMvBq+bD7fM3LTnOYca/8XcsKcP9ca5XQTOo8C+pbXy955huOfnvt0+88gZvo/u2mEIfGluxh2HcVNO9Va8bU6/dp8NW5TWvmfsc/tfiexDs+RzMw++EsvsOJcCX5t7vUrr+nN57094p72ntRvsNXOV787cs/uqrkHgRALr7996bt09o7COSae0jge1nlBfnfnG8a7uWgR2CqxvkX48s74lvGHntV3hooDSukix8z/WE+uumR/MXLXz2q5A4GiBG+dTj87cOqOwjna65GeU1iVZjvzD9QRbb8z/bGZ92+hC4KQCb5jAUzPrJ+6+JTyp3lxfaZ0cbRXXzTO/mnn9yeMS51jgrXPffz3z9pn160IugYDSCtAmsl5lvWNmPQHfMuNCYJfAO+cK63f+3jSz14/8dy06659XWvkj/OqJvnlmFdd6QroQOErgwivz180VzvqvCB1lsNmfK639KNcTcD0Rn5x5/35HSZ9RgQ/P/Xp45rUz/r5t8CBD3B9xGa6fBv105rb9j3PCGRK4c+7LD2e84b7hg6q0tsNcT8wHZz6/3ZFOuowF7pnb/p0ZhbXxg6i0tgVdb9DfP/OVbY912mUm8PW5veuXkRXWKTxwSmt71PVE/fLM+irLd3vfQz5xPd4PzHxxxi+NntIj5ScZpwO7nrCfnVm/j3Pr6axw6gEKrH8N5D0zXmGd3oNz5RVz9ntn1k+/nj29Pefy5GV7zcz66HI+BF6Yu/nczProsr3AeiX7+P8BZouRhNAp7HYAAAAASUVORK5CYII=') no-repeat 0 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="design">
+      <img src="https://images.unsplash.com/photo-1511692277506-3be3a7ab1686" alt="" />
+      <div class="design__border"></div>
+    </div>
+  </body>
+</html>
