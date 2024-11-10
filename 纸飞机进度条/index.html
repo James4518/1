@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>纸飞机进度条</title>
+    <style>
+      body {
+        background: #a8b1b6;
+        font-weight: 500;
+      }
+      .progress {
+        width: 75rem;
+        height: 30px;
+        line-height: 35px;
+        background: #809495;
+        box-shadow: none;
+        padding: 6px;
+        margin-top: 20px;
+        overflow: visible;
+        border-radius: 10px;
+      }
+      .progress:after {
+        content: "";
+        display: block;
+        border-top: 4px dashed #fff;
+        margin-top: 15px;
+      }
+      .progressbar-title {
+        color: #d8dedc;
+        font-size: 15px;
+        margin: 5px 0;
+        font-weight: bold;
+      }
+      .progress .progress-bar {
+        position: relative;
+        border-radius: 10px 0 0 10px;
+        animation: animate-positive 2s;
+      }
+      .progress .progress-bar span {
+        position: absolute;
+        top: -50px;
+        right: -35px;
+        color: #fff;
+        display: block;
+        font-size: 12px;
+        font-weight: bold;
+        padding: 1px 3px;
+        background: #333;
+        border-radius: 0 0 5px 5px;
+      }
+      .progress .progress-bar span:before {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 10px;
+        border: 7px solid transparent;
+        border-top: 7px solid #333;
+      }
+      .progress .progress-bar span:after {
+        content: "\2708";
+        font-size: 48px;
+        color: #333;
+        position: absolute;
+        top: 51px;
+        right: 3px;
+      }
+      @keyframes animate-positive {
+        0% {
+          width: 0%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-offset-3 col-md-6">
+          <h3 class="progressbar-title">HTML5</h3>
+          <div class="progress">
+            <div
+              class="progress-bar"
+              style="width: 75%; background-color: #005394"
+            >
+              <span>75%</span>
+            </div>
+          </div>
+          <h3 class="progressbar-title">CSS3</h3>
+          <div class="progress">
+            <div
+              class="progress-bar"
+              style="width: 0%; background-color: #d9534f"
+            >
+              <span>0%</span>
+            </div>
+          </div>
+          <h3 class="progressbar-title">JavaScript</h3>
+          <div class="progress">
+            <div
+              class="progress-bar"
+              style="width: 100%; background-color: #f0ad4e"
+            >
+              <span>100%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
