@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style lang="scss">
+        .wrapper {
+            box-sizing: border-box;
+            position: absolute;
+            top: 50%;
+            left: 30%;
+            transform: translate(-20%, -50%);
+            width: 600px;
+            height: 60px;
+            overflow: hidden;
+            border: 4px solid red;
+            border-radius: 5px;
+        }
+        .marquee-wrapper {
+            display: flex;
+            align-items: center;
+            width: 200%;
+            height: 100%;
+            transform: translateX(0);
+            /*animation: move 6s infinite linear;*/
+            animation-delay: 5s;
+            /*text-shadow: 1325px 0;*/
+        }
+        .marquee-text {
+            width: 100%;
+            font-size: 20px;
+            white-space: nowrap;
+        }
+        .marquee-text:nth-child(2) {
+            color: red;
+        }
+        @keyframes move {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+</style>
+</head>
+<body>
+  <h2>无逢滚动 --- 已知内容宽度不会超过容器宽度 (纯CSS实现)</h2>
+  <h2>会增加额外相同的dom元素</h2>
+    <div class="wrapper">
+        <div class="marquee-wrapper">
+            <div class="marquee-text">
+                这是第一行横向滚动的提示文字信息
+            </div>
+            <div class="marquee-text">
+                这是第一行横向滚动的提示文字信息
+            </div>
+        </div>
+    </div>
+    </div>
+</body>
+</html>
