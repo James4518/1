@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style lang="scss">
+      :root {
+        --start-position: 0;
+      }
+      .marquee-wrapper {
+        box-sizing: border-box;
+        position: absolute;
+        top: 50%;
+        left: 30%;
+        transform: translate(-20%, -50%);
+        display: flex;
+        align-items: center;
+        width: 600px;
+        height: 60px;
+        overflow: hidden;
+        border: 4px solid red;
+        border-radius: 5px;
+      }
+      /*.marquee-wrapper {*/
+      /*    display: flex;*/
+      /*    align-items: center;*/
+      /*    width: auto;*/
+      /*    height: 100%;*/
+      /*}*/
+      .marquee-text {
+        width: auto;
+        font-size: 20px;
+        white-space: nowrap;
+      }
+      .marquee-text.moveFirst {
+        animation: moveFirst linear forwards;
+        animation-delay: 3s;
+      }
+      .marquee-text.moveInfinite {
+        animation: moveInfinite linear infinite;
+      }
+      @keyframes moveFirst {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(-100%);
+        }
+      }
+      @keyframes moveInfinite {
+        0% {
+          transform: translateX(var(--start-position));
+        }
+        100% {
+          transform: translateX(-100%);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h2>距离一定的位置进行滚动 --- 内容宽度不定 (JS + CSS实现)</h2>
+    <div class="marquee-wrapper">
+      <div class="marquee-text">
+        这是第一行横向滚动的提示文字信息1这是第一行横向滚动的提示文字信息2。
+      </div>
+    </div>
+    <script>
+      const container = document.querySelector(".marquee-wrapper");
+      const marqueeText = document.querySelector(".marquee-text");
+      const containerWidth = container.offsetWidth;
+      const marqueeTextWidth = marqueeText.offsetWidth;
+      const speed = 100; // 滚动速度，单位 px/s
+      const firstAnimationDuration = marqueeTextWidth / speed; // 第一次动画持续时间
+      const animationDuration = (marqueeTextWidth + containerWidth) / speed; // 动画持续时间
+      if (marqueeTextWidth > containerWidth) {
+        marqueeText.classList.add("moveFirst");
+        marqueeText.style.animationDuration = `${firstAnimationDuration}s`;
+        // 注意⚠️：第一次动画执行不能是infinite，否则不会监听到动画结束
+        marqueeText.addEventListener("animationend", () => {
+          marqueeText.classList.remove("moveFirst");
+          marqueeText.classList.add("moveInfinite");
+          // 设置第二次从什么位置开始执行动画
+          document.documentElement.style.setProperty(
+            "--start-position",
+            containerWidth + "px"
+          );
+          // marqueeText.style.setProperty('--start-position', containerWidth + 'px');
+          marqueeText.style.animationDuration = `${animationDuration}s`;
+        });
+      }
+    </script>
+  </body>
+</html>
