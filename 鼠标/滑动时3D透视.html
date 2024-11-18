@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .card {
+        display: block;
+        border-radius: inherit;
+        overflow: hidden;
+        height: 370px;
+        width: 592px;
+        transition: transform 0.1s;
+        transform: perspective(400px) rotateX(var(--rx, 0deg))
+          rotateY(var(--ry, 0deg));
+      }
+      .card:hover {
+        box-shadow: 0px 0px 10px #8b913d, 0px 0px 50px #a76671;
+      }
+      img {
+        border-radius: inherit;
+        height: 100%;
+        width: 100%;
+      }
+      body {
+        margin: 0;
+        border-radius: 16px;
+        min-height: 100vh;
+        display: grid;
+        place-content: center;
+        background: #a2a77b;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <img src="../Lofi Cafe-Bewie.jpg" />
+    </div>
+    <script>
+      const card = document.querySelector(".card");
+      const img = document.querySelector("img");
+      // range: 最大的幅度，value：当前鼠标的位置，maxValue: 鼠标所在方向图片长度
+      const RANGE = [-5, 5];
+      const getRotate = (value, maxValue) => {
+        return (value / maxValue) * (RANGE[1] - RANGE[0]) + RANGE[0];
+      };
+      const offsetWidth = card.offsetWidth;
+      const offsetHeight = card.offsetHeight;
+      card.addEventListener("mousemove", (e) => {
+        const { offsetX, offsetY } = e;
+        const rx = -getRotate(offsetY, offsetHeight);
+        const ry = getRotate(offsetX, offsetWidth);
+        card.style.setProperty("--rx", `${rx}deg`);
+        card.style.setProperty("--ry", `${ry}deg`);
+      });
+      card.addEventListener("mouseleave", (e) => {
+        card.style.setProperty("--rx", `0deg`);
+        card.style.setProperty("--ry", `0deg`);
+      });
+    </script>
+  </body>
+</html>
