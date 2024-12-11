@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .box {
+        width: 200px;
+        height: 200px;
+        background-color: #2cb9ad;
+        border-radius: 50%;
+        margin: 100px auto 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        animation: move 2s infinite linear;
+      }
+      .box1 {
+        width: 160px;
+        height: 160px;
+        border-radius: 50%;
+        background-color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .box2 {
+        width: 120px;
+        height: 120px;
+        border: 8px solid #7e7e7e;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+      }
+      .box3 {
+        width: 40px;
+        height: 40px;
+        border: 8px solid #7e7e7e;
+        background-color: transparent;
+        border-radius: 50%;
+        position: relative;
+      }
+      .box3 > li:nth-child(1) {
+        width: 8px;
+        height: 132px;
+        background-color: #7e7e7e;
+        position: absolute;
+        top: -45px;
+        left: 16px;
+        transform: rotate(10deg);
+      }
+      .box3 > li:nth-child(2) {
+        width: 8px;
+        height: 132px;
+        background-color: #7e7e7e;
+        position: absolute;
+        top: -45px;
+        left: 16px;
+        transform: rotate(53.57deg);
+      }
+      .box3 > li:nth-child(3) {
+        width: 8px;
+        height: 132px;
+        background-color: #7e7e7e;
+        position: absolute;
+        top: -45px;
+        left: 16px;
+        transform: rotate(97.5deg);
+      }
+      .box3 > li:nth-child(4) {
+        width: 8px;
+        height: 132px;
+        background-color: #7e7e7e;
+        position: absolute;
+        top: -45px;
+        left: 16px;
+        transform: rotate(141.25deg);
+      }
+      .box4 {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        background-color: #fff;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+      }
+      @keyframes move {
+        from {
+        }
+        to {
+          transform: rotate(-360deg);
+        }
+      }
+      .item {
+        width: 600px;
+        height: 10px;
+        background-color: #2cb9ad;
+        border-radius: 5px;
+        margin: auto;
+        transform: translateX(-1265px);
+        animation: mover 10s linear forwards;
+      }
+      @keyframes mover {
+        from {
+        }
+        to {
+          transform: translateX(210px);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <div class="box1">
+        <div class="box2">
+          <ul class="box3">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+          </ul>
+          <div class="box4"></div>
+        </div>
+      </div>
+    </div>
+    <div class="item"></div>
+  </body>
+</html>
