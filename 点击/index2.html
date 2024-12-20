@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body {
+        padding: 0;
+        margin: 0;
+        height: 100vh;
+        background-color: #111111;
+        position: relative;
+      }
+      #canvas {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="canvas" />
+    <script>
+      const canvas = document.getElementById("canvas");
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      const ctx = canvas.getContext("2d");
+      const colors = [
+        "#8A2BE2",
+        "#D7263D",
+        "#FFD700",
+        "#3A86FF",
+        "#00CED1",
+        "#7CB342",
+      ];
+      let shapes = [];
+
+      canvas.addEventListener("click", (e) => {
+        createMouseEffect(e.clientX, e.clientY);
+      });
+
+      animate();
+
+      class Shape {
+        constructor(type, x, y, size, color, speedX, speedY) {
+          this.type = type;
+          this.x = x;
+          this.y = y;
+          this.size = size;
+          this.color = color;
+          this.speedX = speedX;
+          this.speedY = speedY;
+        }
+        draw(ctx) {
+          console.log("this.type", this.type);
+          if (this.color) {
+            ctx.fillStyle = this.color;
+          }
+          switch (this.type) {
+            case "circle":
+              ctx.beginPath();
+              ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+              ctx.closePath();
+              ctx.fill();
+              break;
+            case "heart":
+              ctx.beginPath();
+              ctx.moveTo(this.x, this.y);
+              ctx.bezierCurveTo(
+                this.x + this.size / 2,
+                this.y - this.size / 2,
+                this.x + this.size / 2,
+                this.y + this.size / 4,
+                this.x,
+                this.y + this.size / 2
+              );
+              ctx.bezierCurveTo(
+                this.x - this.size / 2,
+                this.y + this.size / 4,
+                this.x - this.size / 2,
+                this.y - this.size / 2,
+                this.x,
+                this.y
+              );
+              ctx.closePath();
+              ctx.fill();
+              break;
+            case "square":
+              ctx.fillRect(
+                this.x - this.size / 2,
+                this.y - this.size / 2,
+                this.size,
+                this.size
+              );
+              break;
+            case "triangle":
+              ctx.beginPath();
+              ctx.moveTo(this.x, this.y - this.size / 2);
+              ctx.lineTo(this.x + this.size / 2, this.y + this.size / 2);
+              ctx.lineTo(this.x - this.size / 2, this.y + this.size / 2);
+              ctx.closePath();
+              ctx.fill();
+              break;
+            case "custom":
+              if (typeof this.customDraw === "function") {
+                this.customDraw(
+                  ctx,
+                  this.x,
+                  this.y,
+                  this.size,
+                  this.color,
+                  this.speedX,
+                  this.speedY
+                );
+              } else {
+                console.error("Custom draw function is not defined");
+              }
+              break;
+            default:
+              console.error("Shape type not recognized");
+          }
+        }
+        setCustomDraw(func) {
+          this.customDraw = func;
+          this.type = "custom";
+        }
+        update() {
+          this.x += this.speedX;
+          this.y += this.speedY;
+          this.size *= 0.98;
+        }
+      }
+      function createMouseEffect(x, y) {
+        const shapeNum = 50;
+        for (let i = 0; i < shapeNum; i++) {
+          const color = colors[Math.floor(Math.random() * colors.length)];
+          const size = Math.random() * 5 + 4;
+          const speedX = (Math.random() * 2 - 1) * 2;
+          const speedY = (Math.random() * 2 - 1) * 2;
+          shapes.push(new Shape("circle", x, y, size, color, speedX, speedY));
+        }
+      }
+      function drawShapes() {
+        for (let i = 0; i < shapes.length; i++) {
+          const shape = shapes[i];
+          shape.update();
+          shape.draw(ctx);
+          if (shapes[i].size <= 2) {
+            shapes.splice(i, 1);
+            i--;
+          }
+        }
+      }
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        drawShapes();
+        requestAnimationFrame(animate);
+      }
+    </script>
+  </body>
+</html>
